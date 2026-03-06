@@ -39,50 +39,50 @@
     <section class="contact-section">
         <div class="container">
             <div class="contact-grid">
-                <!-- Contact Information with Working Links -->
+                <!-- Contact Information -->
                 <div class="contact-info">
                     <h2>Let's connect</h2>
-                    <a href="mailto:tanvir.cse2004@gmail.com" class="info-item" style="text-decoration: none; color: inherit;">
+                    <div class="info-item">
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
                             <p>tanvir.cse2004@gmail.com</p>
                         </div>
-                    </a>
-                    <a href="tel:+8801798402146" class="info-item" style="text-decoration: none; color: inherit;">
+                    </div>
+                    <div class="info-item">
                         <i class="fas fa-phone-alt"></i>
                         <div>
                             <h3>Phone</h3>
                             <p>+8801798402146</p>
                         </div>
-                    </a>
-                    <a href="https://github.com/tanvir04itachi" target="_blank" class="info-item" style="text-decoration: none; color: inherit;">
+                    </div>
+                    <div class="info-item">
                         <i class="fab fa-github"></i>
                         <div>
                             <h3>GitHub</h3>
                             <p>github.com/tanvir04itachi</p>
                         </div>
-                    </a>
-                    <a href="https://linkedin.com/in/tanvir-ahmed" target="_blank" class="info-item" style="text-decoration: none; color: inherit;">
+                    </div>
+                    <div class="info-item">
                         <i class="fab fa-linkedin"></i>
                         <div>
                             <h3>LinkedIn</h3>
                             <p>linkedin.com/in/tanvir-ahmed</p>
                         </div>
-                    </a>
-                    <a href="https://leetcode.com/tanvir04itachi" target="_blank" class="info-item" style="text-decoration: none; color: inherit;">
+                    </div>
+                    <div class="info-item">
                         <i class="fas fa-code"></i>
                         <div>
                             <h3>LeetCode</h3>
                             <p>tanvir04itachi</p>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
-                <!-- Contact Form - Will Send Email -->
+                <!-- Contact Form -->
                 <div class="contact-form">
                     <h2>Send a Message</h2>
-                    <form id="contactForm" onsubmit="sendEmail(event)">
+                    <form id="contactForm">
                         <div class="form-group">
                             <input type="text" id="name" placeholder="Your Name" required>
                         </div>
@@ -99,7 +99,6 @@
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
-                    <div id="formStatus" class="form-status" style="display: none;"></div>
                 </div>
             </div>
         </div>
@@ -112,7 +111,6 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>Current Location</h3>
                 <p>Basundhara R/A, Block C, Road 4/B · Dhaka, Bangladesh</p>
-                <a href="https://maps.google.com/?q=Basundhara+R/A,+Block+C,+Road+4/B,+Dhaka,+Bangladesh" target="_blank" class="map-link">View on Google Maps</a>
             </div>
         </div>
     </section>
@@ -122,78 +120,6 @@
         <p>©Tanvir Ahmed.</p>
     </footer>
 
-    <script>
-        // Email sending function using mailto
-        function sendEmail(event) {
-            event.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value || 'No Subject';
-            const message = document.getElementById('message').value;
-            
-            // Create email body
-            const emailBody = `Name: ${name}%0A%0AEmail: ${email}%0A%0AMessage:%0A${message}`;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:tanvir.cse2004@gmail.com?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
-            
-            // Open default email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            const formStatus = document.getElementById('formStatus');
-            formStatus.style.display = 'block';
-            formStatus.className = 'form-status success';
-            formStatus.innerHTML = 'Opening your email client...';
-            
-            // Optional: Reset form
-            document.getElementById('contactForm').reset();
-            
-            // Hide status after 5 seconds
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
-        }
-
-        // Theme toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggle = document.getElementById('themeToggle');
-            const icon = themeToggle.querySelector('i');
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-            
-            // Theme toggle click handler
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-theme');
-                
-                if (document.body.classList.contains('dark-theme')) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Mobile menu toggle (if you have this functionality)
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    const navMenu = document.querySelector('.nav-menu');
-                    navMenu.classList.toggle('active');
-                });
-            }
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
