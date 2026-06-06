@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Resources/icon.png">
+    <title>About & Skills - Tanvir Ahmed</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('portfolio-theme');
+            if (theme === 'light' || theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="launch-loader" aria-label="Loading portfolio">
+            <div class="launch-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="Resources/icon.png" alt="Tanvir Ahmed logo">
+            </div>
+            <p class="launch-kicker">Initializing Portfolio</p>
+            <div class="launch-progress"><span></span></div>
+            <p class="launch-status">Preparing interface...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand"><img src="Resources/Logo.png" alt="Logo" class="nav-logo"></div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h1 class="section-title">About Me</h1>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>My Journey</h2>
+                    <p>
+                        I'm a Computer Science & Engineering student at American International University-Bangladesh (AIUB) 
+                        with a strong academic foundation (CGPA: 3.67/4.00). My journey in tech has been marked by hands-on experience 
+                        building full-stack web applications, desktop systems, and database-driven solutions across 8 academic projects.
+                    </p>
+                    <p>
+                        I'm proficient in PHP, MySQL, Java, C#, and C++, with working knowledge of Agile/Scrum workflows, UI prototyping 
+                        in Figma, and QA practices using Jira. I have experience integrating frontend and backend technologies, managing 
+                        relational databases, and following software engineering best practices.
+                    </p>
+                    <p>
+                        I'm passionate about solving complex problems through elegant code and user-centered design. Currently seeking a 
+                        junior software engineer or backend developer role where I can contribute immediately and grow within a collaborative 
+                        engineering team. When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, 
+                        or working on research initiatives in software engineering.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skills-grid">
+                <!-- Programming Languages -->
+                <div class="skill-category">
+                    <h3 class="category-title">Programming Languages</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">PHP</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">C++</span>
+                        <span class="skill-badge">C#</span>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="skill-category">
+                    <h3 class="category-title">Web Development</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">HTML</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">AJAX</span>
+                        <span class="skill-badge">JSON</span>
+                    </div>
+                </div>
+
+                <!-- Databases -->
+                <div class="skill-category">
+                    <h3 class="category-title">Databases</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">Oracle Database</span>
+                        <span class="skill-badge">SQL Server</span>
+                        <span class="skill-badge">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Development Tools -->
+                <div class="skill-category">
+                    <h3 class="category-title">Development Tools</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Git</span>
+                        <span class="skill-badge">Google Colab</span>
+                        <span class="skill-badge">VS Code</span>
+                        <span class="skill-badge">Figma</span>
+                    </div>
+                </div>
+
+                <!-- Project Management & Design -->
+                <div class="skill-category">
+                    <h3 class="category-title">Project Management & Design</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Scrum/Agile</span>
+                        <span class="skill-badge">Jira</span>
+                        <span class="skill-badge">Trello</span>
+                        <span class="skill-badge">Notion</span>
+                        <span class="skill-badge">Figma</span>
+                    </div>
+                </div>
+
+                <!-- Other Technologies -->
+                <div class="skill-category">
+                    <h3 class="category-title">Other Technologies</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">OpenGL</span>
+                        <span class="skill-badge">UML</span>
+                        <span class="skill-badge">AutoCAD</span>
+                        <span class="skill-badge">Multisim</span>
+                        <span class="skill-badge">Office Suite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://github.com/tanvir04itachi" target="_blank" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/tanvir2004ahmed" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://facebook.com/daibindurha" target="_blank" class="social-link">Facebook</a>
+                <a href="mailto:tanvir.cse2004@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

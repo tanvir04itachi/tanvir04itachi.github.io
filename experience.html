@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Resources/icon.png">
+    <title>Experience & Certifications - Tanvir Ahmed</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('portfolio-theme');
+            if (theme === 'light' || theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="launch-loader" aria-label="Loading portfolio">
+            <div class="launch-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="Resources/icon.png" alt="Tanvir Ahmed logo">
+            </div>
+            <p class="launch-kicker">Initializing Portfolio</p>
+            <div class="launch-progress"><span></span></div>
+            <p class="launch-status">Preparing interface...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand"><img src="Resources/Logo.png" alt="Logo" class="nav-logo"></div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <h1 class="section-title">Education & Professional Development</h1>
+
+            <!-- Education Timeline -->
+            <h2 class="subsection-title">Education</h2>
+            <div class="timeline">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3 class="timeline-title">Bachelor of Science in Computer Science & Engineering</h3>
+                        <p class="timeline-company">American International University-Bangladesh (AIUB)</p>
+                        <p class="timeline-description">
+                            <strong>CGPA: 3.67 / 4.00</strong> <br>
+                            Relevant Coursework: Data Structures, Algorithms, Database Management, Web Development, Software Engineering, Software Quality Testing, Software Requirements Engineering
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019 - 2021</div>
+                        <h3 class="timeline-title">Higher Secondary Certificate (HSC)</h3>
+                        <p class="timeline-company">Sohiuddin Degree College, Meherpur, Bangladesh</p>
+                        <p class="timeline-description">
+                            <strong>GPA: 5.00 / 5.00</strong> <br>
+                            Strong foundation in science and mathematics with excellence in all subjects.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2010 - 2018</div>
+                        <h3 class="timeline-title">Secondary School Certificate (SSC)</h3>
+                        <p class="timeline-company">Meherpur Govt. High School, Meherpur, Bangladesh</p>
+                        <p class="timeline-description">
+                            <strong>GPA: 4.78 / 5.00</strong> <br>
+                            Demonstrated academic excellence and strong foundation in core subjects.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Development & Research -->
+            <h2 class="subsection-title">Professional Development & Research</h2>
+            <div class="timeline">
+                <!-- Research Project -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun - Jul 2025</div>
+                        <h3 class="timeline-title">Research Project Participant</h3>
+                        <p class="timeline-company">4th National Research Project Contest - Bangladesh University of Professionals (BUP)</p>
+                        <p class="timeline-description">
+                            • Selected to represent AIUB at BUP's national research contest among university teams from across Bangladesh <br>
+                            • Contributed to research design, data analysis, and written essay submission <br>
+                            • Co-presented research findings at the national contest
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Workshop 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 2025</div>
+                        <h3 class="timeline-title">From Idea to Paper: Guided Research Writing Workshop</h3>
+                        <p class="timeline-company">AIUB Research & Development Club</p>
+                        <p class="timeline-description">
+                            Guided by Prof. Dr. S.A.M. Manzur H. Khan & Dr. Prodhan Mahbub Ibna Seraj. <br>
+                            Enhanced academic writing, research communication, and paper publication skills.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Workshop 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sep 2025</div>
+                        <h3 class="timeline-title">How to Secure an Erasmus Mundus Scholarship</h3>
+                        <p class="timeline-company">AIUB Research & Development Club</p>
+                        <p class="timeline-description">
+                            Webinar covering scholarship opportunities, application strategies, and international education pathways for advanced studies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Workshop 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2025</div>
+                        <h3 class="timeline-title">The AI Literacy Workshop</h3>
+                        <p class="timeline-company">Institute for Global Cooperation Foundation</p>
+                        <p class="timeline-description">
+                            Comprehensive workshop on artificial intelligence fundamentals, applications, and societal impact. <br>
+                            Signed by Executive Director Shama Obaed and Chairman Mahmudur Rahman.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications-section">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+
+            <div class="certifications-grid">
+                <!-- Certification Card 1 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-1.jpg" alt="Critical Essay Writing - Research Project Contest 2025" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">Critical Essay Writing</h3>
+                    <p class="cert-issuer">4th National Research Project Contest - BUP Research Society</p>
+                    <p class="cert-date">June - July 2025</p>
+                    <a href="#" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 2 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-2.jpg" alt="IT Essentials: PC Hardware and Software" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">IT Essentials: PC Hardware and Software</h3>
+                    <p class="cert-issuer">CISCO Networking Academy</p>
+                    <p class="cert-date">11 June 2023</p>
+                    <a href="https://cisco.com" target="_blank" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 3 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-3.jpg" alt="Code to Cloud: Practical DevOps with AWS" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">Code to Cloud: Practical DevOps with AWS</h3>
+                    <p class="cert-issuer">Cloudly Infotech Limited (AWS Partner)</p>
+                    <p class="cert-date">2025</p>
+                    <a href="#" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 4 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-4.jpg" alt="Introduction to Front End Development" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">Introduction to Front End Development</h3>
+                    <p class="cert-issuer">Simplilearn SkillUP</p>
+                    <p class="cert-date">4 May 2026</p>
+                    <p class="cert-code">Code: 10188998</p>
+                    <a href="https://simplilearn.com" target="_blank" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 5 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-5.jpg" alt="How to Secure an Erasmus Mundus Scholarship" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">How to Secure an Erasmus Mundus Scholarship</h3>
+                    <p class="cert-issuer">AIUB Research & Development Club</p>
+                    <p class="cert-date">8 September 2025</p>
+                    <a href="#" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 6 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-6.jpg" alt="From Idea to Paper: A Guided Research Writing Workshop" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">From Idea to Paper: Guided Research Writing</h3>
+                    <p class="cert-issuer">AIUB Research & Development Club</p>
+                    <p class="cert-date">21 August 2025</p>
+                    <a href="#" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 7 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-7.jpg" alt="The AI Literacy Workshop" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">The AI Literacy Workshop</h3>
+                    <p class="cert-issuer">Institute for Global Cooperation Foundation</p>
+                    <p class="cert-date">29 November 2025</p>
+                    <a href="#" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 8 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-8.jpg" alt="IELTS Masterclass" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">IELTS Masterclass</h3>
+                    <p class="cert-issuer">Compass Institute of Continuing Education & AIUB</p>
+                    <p class="cert-date">30 December 2025</p>
+                    <a href="#" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 9 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-9.jpg" alt="Introduction to Web Development with ChatGPT" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">Introduction to Web Development with ChatGPT</h3>
+                    <p class="cert-issuer">Simplilearn SkillUP</p>
+                    <p class="cert-date">9 April 2026</p>
+                    <p class="cert-code">Code: 10076924</p>
+                    <a href="https://simplilearn.com" target="_blank" class="cert-link">View Details →</a>
+                </div>
+
+                <!-- Certification Card 10 -->
+                <div class="certification-card">
+                    <div class="cert-image-container">
+                        <img src="Resources/cert-10.jpg" alt="Introduction to Software Testing" class="cert-image">
+                    </div>
+                    <h3 class="cert-title">Introduction to Software Testing</h3>
+                    <p class="cert-issuer">Simplilearn SkillUP</p>
+                    <p class="cert-date">7 April 2026</p>
+                    <p class="cert-code">Code: 10069305</p>
+                    <a href="https://simplilearn.com" target="_blank" class="cert-link">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://github.com/tanvir04itachi" target="_blank" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/tanvir2004ahmed" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://facebook.com/daibindurha" target="_blank" class="social-link">Facebook</a>
+                <a href="mailto:tanvir.cse2004@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Certificate Modal -->
+    <div class="cert-modal" id="certModal">
+        <div class="cert-modal-content">
+            <span class="cert-modal-close" id="certModalClose">&times;</span>
+            <img id="certModalImage" src="" alt="Certificate" class="cert-modal-image">
+        </div>
+    </div>
+</body>
+</html>

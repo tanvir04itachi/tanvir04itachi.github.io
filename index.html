@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Resources/icon.png">
+    <title>Tanvir Ahmed - CSE Student Portfolio</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('portfolio-theme');
+            if (theme === 'light' || theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="launch-loader" aria-label="Loading portfolio">
+            <div class="launch-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="Resources/icon.png" alt="Tanvir Ahmed logo">
+            </div>
+            <p class="launch-kicker">Initializing Portfolio</p>
+            <div class="launch-progress"><span></span></div>
+            <p class="launch-status">Preparing interface...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand"><img src="Resources/Logo.png" alt="Logo" class="nav-logo"></div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="Resources/profile.jpg" alt="Tanvir Ahmed">
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">Hi, I'm <span class="accent">Tanvir Ahmed</span></h1>
+                <p class="hero-subtitle">CSE Student at AIUB | Full-Stack Developer | Problem Solver</p>
+                <p class="hero-description">
+                    I'm a Computer Science & Engineering student with hands-on experience building full-stack web applications, 
+                    desktop systems, and database-driven solutions. Proficient in PHP, MySQL, Java, C#, and C++, with knowledge 
+                    of Agile/Scrum workflows and modern development practices. Seeking a junior software engineer role to make an impact.
+                </p>
+                <div class="hero-cta">
+                    <a href="projects.html" class="cta-primary">View My Projects</a>
+                    <a href="Resources/Tanvir Ahmed.pdf" class="cta-secondary" target="_blank">View CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Academic Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3.67</div>
+                <div class="stat-label">CGPA at AIUB</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7+</div>
+                <div class="stat-label">Certifications</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://github.com/tanvir04itachi" target="_blank" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/tanvir2004ahmed" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://facebook.com/daibindurha" target="_blank" class="social-link">Facebook</a>
+                <a href="mailto:tanvir.cse2004@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

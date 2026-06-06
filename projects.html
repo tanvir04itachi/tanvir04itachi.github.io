@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Resources/icon.png">
+    <title>Projects - Tanvir Ahmed</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem('portfolio-theme');
+            if (theme === 'light' || theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="launch-loader" aria-label="Loading portfolio">
+            <div class="launch-orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <img src="Resources/icon.png" alt="Tanvir Ahmed logo">
+            </div>
+            <p class="launch-kicker">Initializing Portfolio</p>
+            <div class="launch-progress"><span></span></div>
+            <p class="launch-status">Preparing interface...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand"><img src="Resources/Logo.png" alt="Logo" class="nav-logo"></div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h1 class="section-title">My Projects</h1>
+            <p class="section-subtitle">A selection of projects I've built showcasing my skills in web development, software engineering, and problem-solving.</p>
+
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Smart Residential Society Management System</h3>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">SRS</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Course:</strong> Software Requirements Engineering<br>
+                        • Performed requirement elicitation, analysis, and documentation including SRS (Software Requirements Specification)<br>
+                        • Designed database schema and managed data using MySQL for resident records, visitor logs, and maintenance tracking<br>
+                        • Created technical documentation and user manuals for system deployment
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/SRE-Smart-Residential-Society-Management-System.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">SkillBridge: Micro-Freelancing Platform</h3>
+                        <div class="project-tags">
+                            <span class="tag">Scrum</span>
+                            <span class="tag">Jira</span>
+                            <span class="tag">Figma</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Course:</strong> Software Quality Testing<br>
+                        • Applied Agile Scrum methodology for project management and documentation<br>
+                        • Performed test case design, bug tracking, and quality reporting using Jira and Trello<br>
+                        • Created UI/UX prototypes using Figma and managed version control with Git
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/SQT-SkillBridge---A-Micro-Freelancing-Platform-for-University-Students.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Expose360</h3>
+                        <div class="project-tags">
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">PHP</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Technologies:</strong> HTML, CSS, JavaScript, PHP, AJAX, JSON, MySQL<br>
+                        • Developed a full-stack web application integrating frontend and backend technologies<br>
+                        • Implemented dynamic data handling using AJAX and JSON<br>
+                        • Designed and managed relational database using MySQL
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/Web-Technologies-Expose360.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">QuickCart - Shopping Management System</h3>
+                        <div class="project-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">Desktop App</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Technologies:</strong> C#, Microsoft SQL Server<br>
+                        • Developed a desktop-based shopping management system<br>
+                        • Integrated database operations using Microsoft SQL Server<br>
+                        • Features comprehensive inventory and transaction management
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/QuickCart.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 5 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Digital Realm Journey</h3>
+                        <div class="project-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">OpenGL</span>
+                            <span class="tag">Graphics</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Technologies:</strong> C++, OpenGL (GLUT)<br>
+                        • Built interactive graphics-based application using OpenGL Utility Toolkit<br>
+                        • Demonstrates advanced graphics programming and interactive visualization capabilities
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/Digital-Realm-Journey.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 6 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">The Shop Management System</h3>
+                        <div class="project-tags">
+                            <span class="tag">Oracle</span>
+                            <span class="tag">Database</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Technologies:</strong> Oracle Database, SQL<br>
+                        • Designed and implemented database schema and SQL queries<br>
+                        • Features robust schema design for inventory and transaction management<br>
+                        • Comprehensive data management for shop operations
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/CLOTH-STORE-MANAGEMENT-SYSTEM.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 7 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">DigiTECH</h3>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">GUI</span>
+                            <span class="tag">Event-Driven</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Technologies:</strong> Java, GUI Framework<br>
+                        • Developed GUI-based Java application with event-driven programming<br>
+                        • Showcases desktop application development using Java Swing/AWT<br>
+                        • Features interactive user interface design
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/DigiTech.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 8 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Micro-Freelancing Platform - Software Engineering</h3>
+                        <div class="project-tags">
+                            <span class="tag">Scrum</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Agile</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        <strong>Methodologies & Tools:</strong> Scrum Model, Figma, Git, Trello, Notion<br>
+                        • Designed project architecture using Agile Scrum methodology<br>
+                        • Created UI/UX prototypes using Figma<br>
+                        • Managed tasks and version control using Git and Trello
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/tanvir04itachi/Software-Engineering-Project.git" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://github.com/tanvir04itachi" target="_blank" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/tanvir2004ahmed" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://facebook.com/daibindurha" target="_blank" class="social-link">Facebook</a>
+                <a href="mailto:tanvir.cse2004@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
