@@ -444,7 +444,7 @@ function initContactForm() {
         });
     });
 
-    contactForm.addEventListener('submit', function (event) {
+    contactForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const name = document.getElementById('name').value.trim();
@@ -462,9 +462,30 @@ function initContactForm() {
             return;
         }
 
-        showAlert('Success!', 'Thank you for your message. I will get back to you soon!', true);
-        contactForm.reset();
-        contactForm.querySelectorAll('.form-group').forEach(group => group.classList.remove('is-focused'));
+        const submitButton = contactForm.querySelector('.submit-btn');
+        const originalButtonText = submitButton.textContent;
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { Accept: 'application/json' }
+            });
+
+            if (!response.ok) throw new Error('Unable to send message');
+
+            showAlert('Email Sent Successfully!', 'Thank you for your message. I will respond soon.', true);
+            contactForm.reset();
+            contactForm.querySelectorAll('.form-group').forEach(group => group.classList.remove('is-focused'));
+        } catch (error) {
+            showAlert('Message Not Sent', 'Please try again later or email me directly at tanvir.cse2004@gmail.com.', false);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
     });
 }
 
