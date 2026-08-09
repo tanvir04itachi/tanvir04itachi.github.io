@@ -876,6 +876,18 @@ section {
     transition: transform var(--transition-base);
 }
 
+.cert-course-banner {
+    background: linear-gradient(135deg, var(--accent-indigo), var(--accent-teal));
+    color: #fff;
+}
+
+.cert-course-banner span {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
 .certification-card:hover .cert-image {
     transform: scale(1.05);
 }
@@ -897,6 +909,12 @@ section {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
     margin-bottom: var(--spacing-lg);
+}
+
+.cert-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
 }
 
 .cert-code {
