@@ -471,17 +471,23 @@ function initContactForm() {
         try {
             const response = await fetch(contactForm.action, {
                 method: 'POST',
-                body: new FormData(contactForm),
-                headers: { Accept: 'application/json' }
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, subject, message })
             });
 
-            if (!response.ok) throw new Error('Unable to send message');
+            if (!response.ok) {
+                const data = await response.json().catch(() => ({}));
+                throw new Error(data.error || 'Unable to send message');
+            }
 
             showAlert('Email Sent Successfully!', 'Thank you for your message. I will respond soon.', true);
             contactForm.reset();
             contactForm.querySelectorAll('.form-group').forEach(group => group.classList.remove('is-focused'));
         } catch (error) {
-            showAlert('Message Not Sent', 'Please try again later or email me directly at tanvir.cse2004@gmail.com.', false);
+            showAlert('Message Not Sent', error.message || 'Please try again later or email me directly at tanvir.cse2004@gmail.com.', false);
         } finally {
             submitButton.disabled = false;
             submitButton.textContent = originalButtonText;

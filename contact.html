@@ -62,9 +62,7 @@
                 <!-- Contact Form -->
                 <div class="contact-form-wrapper">
                     <h2>Send Me a Message</h2>
-                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/tanvir.cse2004@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="New message from your portfolio">
-                        <input type="hidden" name="_template" value="table">
+                    <form class="contact-form" id="contactForm" action="/api/contact" method="POST">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" placeholder="John Doe" required>
@@ -120,7 +118,7 @@
                         </div>
 
                         <div class="info-item">
-                            <h3>Resume</h3>
+                            <h3>CV</h3>
                             <a href="Resources/Tanvir Ahmed.pdf" class="resume-btn" target="_blank">View CV</a>
                         </div>
                     </div>
