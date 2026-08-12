@@ -1,2 +1,2 @@
-node_modules/
+# Keep local credentials out of GitHub.
 .env
