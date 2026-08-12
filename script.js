@@ -475,7 +475,7 @@ function initContactForm() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, email, subject, message })
+                body: JSON.stringify(Object.fromEntries(new FormData(contactForm).entries()))
             });
 
             if (!response.ok) throw new Error('Unable to send message');
