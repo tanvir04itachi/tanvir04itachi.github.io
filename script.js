@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initTypingEffect();
     initRevealAnimations();
     initCounters();
-    initSkillMeters();
     initParallax();
     initCardTilt();
     hideLoadingScreen();
@@ -303,45 +302,6 @@ function initCounters() {
     }, { threshold: 0.5 });
 
     counters.forEach(counter => observer.observe(counter));
-}
-
-function initSkillMeters() {
-    const skillScores = {
-        Python: 82,
-        PHP: 88,
-        Java: 80,
-        'C++': 78,
-        'C#': 76,
-        HTML: 92,
-        CSS: 90,
-        JavaScript: 86,
-        AJAX: 78,
-        JSON: 84,
-        MySQL: 88,
-        'Oracle Database': 74,
-        'SQL Server': 76,
-        SQL: 86,
-        Git: 84,
-        'Google Colab': 78,
-        'VS Code': 92,
-        Figma: 82,
-        'Scrum/Agile': 86,
-        Jira: 80,
-        Trello: 78,
-        Notion: 82,
-        OpenGL: 72,
-        UML: 78,
-        AutoCAD: 70,
-        Multisim: 68,
-        'Office Suite': 84
-    };
-
-    document.querySelectorAll('.skill-badge').forEach(badge => {
-        const label = badge.textContent.trim();
-        const score = skillScores[label] || 75;
-        badge.style.setProperty('--skill-level', `${score}%`);
-        badge.setAttribute('title', `${label} - ${score}% familiarity`);
-    });
 }
 
 /* ============================================
