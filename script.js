@@ -6,6 +6,7 @@ const SITE_LAUNCH_STARTED = performance.now();
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
+    initNavLoadingSkip();
     initThemeToggle();
     initNavigation();
     setActiveNavLink();
@@ -33,11 +34,34 @@ function hideLoadingScreen(force) {
     const loadingScreen = document.getElementById('loadingScreen');
     if (!loadingScreen) return;
 
+    if (sessionStorage.getItem('skip-loading-screen')) {
+        sessionStorage.removeItem('skip-loading-screen');
+        loadingScreen.classList.add('hidden');
+        return;
+    }
+
     const elapsed = performance.now() - SITE_LAUNCH_STARTED;
     const delay = force ? Math.max(0, 1400 - elapsed) : 2200;
     setTimeout(function () {
         loadingScreen.classList.add('hidden');
     }, delay);
+}
+
+/* the loading screen is meant to greet a fresh visit, not replay every
+   time someone clicks around the nav bar — a real navigation started
+   from a nav click marks itself right before the page actually unloads,
+   so a nav click that the seamless page flow intercepts (no unload)
+   never leaves a stale flag behind for some later, unrelated reload */
+function initNavLoadingSkip() {
+    let lastClickWasNav = false;
+
+    document.addEventListener('click', function (event) {
+        lastClickWasNav = Boolean(event.target.closest('.nav-link, .nav-brand'));
+    });
+
+    window.addEventListener('beforeunload', function () {
+        if (lastClickWasNav) sessionStorage.setItem('skip-loading-screen', '1');
+    });
 }
 
 /* ============================================
@@ -529,6 +553,7 @@ function initSeamlessPageFlow() {
     let sequenceIndex = PAGE_FLOW_SEQUENCE.indexOf(currentFile);
     if (sequenceIndex === -1) return;
 
+    const startIndex = sequenceIndex;
     let isFetching = false;
 
     // Tracks the nav/URL/title for every page currently spliced into the
@@ -610,6 +635,32 @@ function initSeamlessPageFlow() {
         } finally {
             isFetching = false;
         }
+    }
+
+    // Nav links already point at these same pages, so a click should
+    // scroll within the document that's already been spliced together
+    // rather than force a hard reload back to the start of that page —
+    // loading whatever's still missing first if the visitor jumps ahead.
+    document.querySelectorAll('.nav-link[href], .nav-brand[href]').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            const targetFile = link.getAttribute('href').split('/').pop();
+            const targetIndex = PAGE_FLOW_SEQUENCE.indexOf(targetFile);
+            if (targetIndex === -1 || targetIndex < startIndex) return;
+
+            event.preventDefault();
+            goToPage(targetIndex);
+        });
+    });
+
+    async function goToPage(targetIndex) {
+        while (sequenceIndex < targetIndex) {
+            const before = sequenceIndex;
+            await loadNextPage();
+            if (sequenceIndex === before) break;
+        }
+
+        const record = pageRecords.find(r => r.file === PAGE_FLOW_SEQUENCE[targetIndex]);
+        if (record) record.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 

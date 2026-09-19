@@ -657,6 +657,12 @@ section + section {
     margin-top: 88px;
 }
 
+/* so a nav click's scrollIntoView() lands below the fixed nav instead of
+   tucking the section's heading behind it */
+.hero, .about-section, .projects-section, .experience-section, .contact-section {
+    scroll-margin-top: 88px;
+}
+
 /* seamless page flow: a page spliced in mid-scroll isn't under the fixed
    nav, so it doesn't need the clearance the same section gets on load */
 .is-continued-section {
