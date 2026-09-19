@@ -531,6 +531,29 @@ function initSeamlessPageFlow() {
 
     let isFetching = false;
 
+    // Tracks the nav/URL/title for every page currently spliced into the
+    // document, so the nav bar follows whichever page is actually on
+    // screen whether the visitor scrolls down into new pages or back up
+    // into ones already loaded — not just the first time each one loads.
+    const firstOwnSection = document.querySelector('body > section');
+    const pageRecords = firstOwnSection
+        ? [{ el: firstOwnSection, file: currentFile, title: document.title }]
+        : [];
+
+    const scrollSpy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            const record = pageRecords.find(r => r.el === entry.target);
+            if (!record) return;
+
+            history.replaceState({ page: record.file }, '', record.file);
+            document.title = record.title;
+            setActiveNavLink();
+        });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+    if (firstOwnSection) scrollSpy.observe(firstOwnSection);
+
     const trigger = new IntersectionObserver(function (entries) {
         if (!entries[0].isIntersecting || isFetching) return;
         loadNextPage();
@@ -579,14 +602,8 @@ function initSeamlessPageFlow() {
             sequenceIndex += 1;
 
             if (entryMarker) {
-                const pageEntry = new IntersectionObserver(function (entries) {
-                    if (!entries[0].isIntersecting) return;
-                    history.pushState({ page: nextFile }, '', nextFile);
-                    document.title = pageTitle;
-                    setActiveNavLink();
-                    pageEntry.disconnect();
-                }, { threshold: 0 });
-                pageEntry.observe(entryMarker);
+                pageRecords.push({ el: entryMarker, file: nextFile, title: pageTitle });
+                scrollSpy.observe(entryMarker);
             }
         } catch (error) {
             trigger.disconnect();
