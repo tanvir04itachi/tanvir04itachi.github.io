@@ -14,7 +14,7 @@
             }
         })();
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,22 +22,23 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="launch-loader" aria-label="Loading portfolio">
-            <div class="launch-orbit">
-                <span></span>
-                <span></span>
-                <span></span>
-                <img src="Resources/icon.png" alt="Tanvir Ahmed logo">
-            </div>
-            <p class="launch-kicker">Initializing Portfolio</p>
+            <p class="launch-mark">TA</p>
+            <ul class="launch-checks">
+                <li>Compiling interface</li>
+                <li>Running verification checks</li>
+                <li>Ready</li>
+            </ul>
             <div class="launch-progress"><span></span></div>
-            <p class="launch-status">Preparing interface...</p>
         </div>
     </div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand"><img src="Resources/Logo.png" alt="Logo" class="nav-logo"></div>
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-mark">TA</span>
+                <span class="nav-brand-name">Tanvir Ahmed</span>
+            </a>
             <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -50,7 +51,7 @@
                 <li><a href="experience.html" class="nav-link">Experience</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">Light</button>
         </div>
     </nav>
 
@@ -67,6 +68,7 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">MedBridge: A Telemedicine Platform</h3>
+                        <span class="status status--done">Completed</span> <!--status status--progress-->
                         <div class="project-tags">
                             <span class="tag">NestJS</span>
                             <span class="tag">NextJS</span>
@@ -93,6 +95,7 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">Smart Residential Society Management System</h3>
+                        <span class="status status--done">Completed</span>
                         <div class="project-tags">
                             <span class="tag">NestJS</span>
                             <span class="tag">Next.js</span>
@@ -124,6 +127,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">SkillBridge: Micro-Freelancing Platform</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">Scrum</span>
                             <span class="tag">Git</span>
@@ -149,6 +154,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">SRE: Smart Residential Society Management System</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">Requirement Elicitation</span>
                             <span class="tag">Requirement Analysis</span>
@@ -176,6 +183,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">Expose360</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">HTML</span>
                             <span class="tag">CSS</span>
@@ -204,6 +213,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">Micro-Freelancing Platform - Software Engineering</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">Scrum</span>
                             <span class="tag">Figma</span>
@@ -229,6 +240,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">QuickCart - Shopping Management System</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">C#</span>
                             <span class="tag">Microsoft SQL Server</span>
@@ -252,6 +265,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">Digital Realm Journey</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">C++</span>
                             <span class="tag">OpenGL</span>
@@ -274,6 +289,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">The Shop Management System</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">Oracle</span>
                             <span class="tag">Database</span>
@@ -297,6 +314,8 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">DigiTech</h3>
+                        <span class="status status--done">Completed</span> 
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">Java</span>
                             <span class="tag">GUI</span>

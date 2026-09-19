@@ -12,13 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initSmoothAnchors();
     initContactForm();
     initCertificateModal();
-    initCursorGlow();
-    initParticles();
-    initTypingEffect();
-    initRevealAnimations();
-    initCounters();
-    initParallax();
-    initCardTilt();
+    initDynamicStats();
     hideLoadingScreen();
 });
 
@@ -35,7 +29,7 @@ function hideLoadingScreen(force) {
     if (!loadingScreen) return;
 
     const elapsed = performance.now() - SITE_LAUNCH_STARTED;
-    const delay = force ? Math.max(0, 1300 - elapsed) : 2600;
+    const delay = force ? Math.max(0, 1400 - elapsed) : 2200;
     setTimeout(function () {
         loadingScreen.classList.add('hidden');
     }, delay);
@@ -148,199 +142,6 @@ function initSmoothAnchors() {
 
             event.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-}
-
-/* ============================================
-   HERO AND BACKGROUND EFFECTS
-   ============================================ */
-
-function initCursorGlow() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const glow = document.createElement('div');
-    glow.className = 'cursor-glow';
-    document.body.appendChild(glow);
-
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let targetX = x;
-    let targetY = y;
-
-    document.addEventListener('pointermove', function (event) {
-        targetX = event.clientX;
-        targetY = event.clientY;
-    });
-
-    function animateGlow() {
-        x += (targetX - x) * 0.12;
-        y += (targetY - y) * 0.12;
-        glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        requestAnimationFrame(animateGlow);
-    }
-
-    animateGlow();
-}
-
-function initParticles() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const layer = document.createElement('div');
-    layer.className = 'particle-layer';
-    layer.setAttribute('aria-hidden', 'true');
-
-    for (let index = 0; index < 20; index += 1) {
-        const particle = document.createElement('span');
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        particle.style.animationDelay = `${Math.random() * 8}s`;
-        particle.style.animationDuration = `${10 + Math.random() * 12}s`;
-        layer.appendChild(particle);
-    }
-
-    document.body.appendChild(layer);
-}
-
-function initTypingEffect() {
-    const subtitle = document.querySelector('.hero-subtitle');
-    if (!subtitle || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const text = subtitle.textContent.trim();
-    subtitle.dataset.fullText = text;
-    subtitle.textContent = '';
-    subtitle.classList.add('typing-active');
-
-    let index = 0;
-    const type = function () {
-        subtitle.textContent = text.slice(0, index);
-        index += 1;
-
-        if (index <= text.length) {
-            setTimeout(type, 32);
-        } else {
-            subtitle.classList.remove('typing-active');
-        }
-    };
-
-    setTimeout(type, 500);
-}
-
-/* ============================================
-   SCROLL REVEALS, COUNTERS, SKILLS
-   ============================================ */
-
-function initRevealAnimations() {
-    const elements = document.querySelectorAll(
-        '.hero-image, .hero-text, .stat-card, .about-text, .skill-category, .project-card, .timeline-item, .certification-card, .contact-form-wrapper, .contact-info-wrapper, .section-title, .section-subtitle, .subsection-title'
-    );
-
-    elements.forEach((element, index) => {
-        element.classList.add('reveal');
-        element.style.setProperty('--reveal-delay', `${Math.min(index * 45, 320)}ms`);
-    });
-
-    if (!('IntersectionObserver' in window)) {
-        elements.forEach(element => element.classList.add('is-visible'));
-        return;
-    }
-
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-        });
-    }, {
-        threshold: 0.14,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    elements.forEach(element => observer.observe(element));
-}
-
-function initCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    if (!counters.length) return;
-
-    const animateCounter = function (counter) {
-        const rawValue = counter.textContent.trim();
-        const numericValue = parseFloat(rawValue.replace(/[^\d.]/g, ''));
-        const suffix = rawValue.replace(/[\d.]/g, '');
-
-        if (Number.isNaN(numericValue)) return;
-
-        let startTime = null;
-        const duration = 1200;
-
-        function frame(timestamp) {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = numericValue * eased;
-
-            counter.textContent = rawValue.includes('.')
-                ? `${current.toFixed(2)}${suffix}`
-                : `${Math.round(current)}${suffix}`;
-
-            if (progress < 1) {
-                requestAnimationFrame(frame);
-            } else {
-                counter.textContent = rawValue;
-            }
-        }
-
-        requestAnimationFrame(frame);
-    };
-
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            animateCounter(entry.target);
-            observer.unobserve(entry.target);
-        });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => observer.observe(counter));
-}
-
-/* ============================================
-   INTERACTIVE SURFACES
-   ============================================ */
-
-function initParallax() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const heroImage = document.querySelector('.hero-image');
-    const heroText = document.querySelector('.hero-text');
-
-    window.addEventListener('scroll', throttle(function () {
-        const scrollY = window.scrollY;
-        if (heroImage) heroImage.style.transform = `translate3d(0, ${scrollY * 0.035}px, 0)`;
-        if (heroText) heroText.style.transform = `translate3d(0, ${scrollY * -0.018}px, 0)`;
-    }, 16));
-}
-
-function initCardTilt() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const cards = document.querySelectorAll('.project-card, .certification-card, .skill-category, .stat-card, .contact-info');
-
-    cards.forEach(card => {
-        card.addEventListener('pointermove', function (event) {
-            const rect = card.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            const rotateX = ((y / rect.height) - 0.5) * -5;
-            const rotateY = ((x / rect.width) - 0.5) * 5;
-
-            card.style.setProperty('--spot-x', `${x}px`);
-            card.style.setProperty('--spot-y', `${y}px`);
-            card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-        });
-
-        card.addEventListener('pointerleave', function () {
-            card.style.transform = '';
         });
     });
 }
@@ -499,6 +300,32 @@ document.addEventListener('keydown', function (event) {
         closeAlert();
     }
 });
+
+/* ============================================
+   DYNAMIC STATS
+   Counts real records on their source pages so the
+   homepage numbers can't drift out of date.
+   ============================================ */
+
+function initDynamicStats() {
+    document.querySelectorAll('.stat-number[data-source]').forEach(async statEl => {
+        const source = statEl.getAttribute('data-source');
+        const selector = statEl.getAttribute('data-selector');
+
+        try {
+            const response = await fetch(source);
+            if (!response.ok) throw new Error('Unable to load ' + source);
+
+            const html = await response.text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const count = doc.querySelectorAll(selector).length;
+
+            if (count > 0) statEl.textContent = String(count);
+        } catch (error) {
+            // Keep the static fallback already in the markup (e.g. opened via file://).
+        }
+    });
+}
 
 /* ============================================
    PERFORMANCE HELPERS
