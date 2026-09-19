@@ -20,14 +20,12 @@
     --progress: #8C5219;
     --alert: #9C3535;
     --on-verified: #F5F7F4;
-    --on-progress: #F5F7F4;
 
     /* Type */
     --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
     --font-body: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 
     /* Spacing */
-    --sp-xs: 4px;
     --sp-sm: 8px;
     --sp-md: 16px;
     --sp-lg: 24px;
@@ -55,7 +53,6 @@
     --progress: #D69A52;
     --alert: #E07A7A;
     --on-verified: #12181C;
-    --on-progress: #12181C;
 }
 
 * {
