@@ -688,8 +688,8 @@ section + section {
 .about-image {
     order: 2;
     justify-self: end;
-    height: 600px;
     width: 400px;
+    aspect-ratio: 2 / 3;
     border-radius: 20px;
     overflow: hidden;
     border: 1.5px solid var(--rule);
