@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initScrollProgress();
     initSkillsSummary();
     initCopyButtons();
+    initSeamlessPageFlow();
     hideLoadingScreen();
 });
 
@@ -135,8 +136,8 @@ function setActiveNavLink() {
     });
 }
 
-function initSmoothAnchors() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+function initSmoothAnchors(root) {
+    (root || document).querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (event) {
             const href = this.getAttribute('href');
             if (href === '#') return;
@@ -154,14 +155,15 @@ function initSmoothAnchors() {
    CERTIFICATE MODAL
    ============================================ */
 
-function initCertificateModal() {
-    const certModal = document.getElementById('certModal');
-    const certModalImage = document.getElementById('certModalImage');
-    const certModalClose = document.getElementById('certModalClose');
+function initCertificateModal(root) {
+    const scope = root || document;
+    const certModal = scope.querySelector('#certModal');
+    const certModalImage = scope.querySelector('#certModalImage');
+    const certModalClose = scope.querySelector('#certModalClose');
 
     if (!certModal || !certModalImage) return;
 
-    document.querySelectorAll('.cert-link').forEach(link => {
+    scope.querySelectorAll('.cert-link').forEach(link => {
         link.addEventListener('click', function (event) {
             const card = this.closest('.certification-card');
             const image = card ? card.querySelector('.cert-image') : null;
@@ -195,8 +197,8 @@ function initCertificateModal() {
    CONTACT FORM
    ============================================ */
 
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
+function initContactForm(root) {
+    const contactForm = (root || document).querySelector('#contactForm');
     if (!contactForm) return;
 
     contactForm.querySelectorAll('input, textarea').forEach(field => {
@@ -212,10 +214,10 @@ function initContactForm() {
     contactForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
+        const name = contactForm.querySelector('#name').value.trim();
+        const email = contactForm.querySelector('#email').value.trim();
+        const subject = contactForm.querySelector('#subject').value.trim();
+        const message = contactForm.querySelector('#message').value.trim();
 
         if (!name || !email || !subject || !message) {
             showAlert('Validation Error', 'Please fill in all fields before submitting.', false);
@@ -441,12 +443,13 @@ function initScrollProgress() {
    drift as skills are added.
    ============================================ */
 
-function initSkillsSummary() {
-    const summary = document.getElementById('skillsSummary');
+function initSkillsSummary(root) {
+    const scope = root || document;
+    const summary = scope.querySelector('#skillsSummary');
     if (!summary) return;
 
-    const categories = document.querySelectorAll('.skill-category').length;
-    const technologies = document.querySelectorAll('.skill-badge').length;
+    const categories = scope.querySelectorAll('.skill-category').length;
+    const technologies = scope.querySelectorAll('.skill-badge').length;
 
     if (categories && technologies) {
         summary.textContent = categories + ' categories, ' + technologies + ' technologies tracked below.';
@@ -457,8 +460,8 @@ function initSkillsSummary() {
    COPY BUTTONS
    ============================================ */
 
-function initCopyButtons() {
-    document.querySelectorAll('[data-copy]').forEach(button => {
+function initCopyButtons(root) {
+    (root || document).querySelectorAll('[data-copy]').forEach(button => {
         button.addEventListener('click', async function () {
             const text = button.getAttribute('data-copy');
             const originalText = button.textContent;
@@ -485,8 +488,8 @@ function initCopyButtons() {
    homepage numbers can't drift out of date.
    ============================================ */
 
-function initDynamicStats() {
-    document.querySelectorAll('.stat-number[data-source]').forEach(async statEl => {
+function initDynamicStats(root) {
+    (root || document).querySelectorAll('.stat-number[data-source]').forEach(async statEl => {
         const source = statEl.getAttribute('data-source');
         const selector = statEl.getAttribute('data-selector');
 
@@ -502,6 +505,105 @@ function initDynamicStats() {
         } catch (error) {
             // Keep the static fallback already in the markup (e.g. opened via file://).
         }
+    });
+}
+
+/* ============================================
+   SEAMLESS PAGE FLOW
+   Scrolling past the end of a page fetches the next
+   page in the site's nav order and splices its
+   sections straight into the current document, ahead
+   of time, so there is no click, no reload, and no
+   loading-screen replay between pages.
+   ============================================ */
+
+const PAGE_FLOW_SEQUENCE = ['index.html', 'about.html', 'projects.html', 'experience.html', 'contact.html'];
+
+function initSeamlessPageFlow() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const footer = document.querySelector('footer.footer');
+    if (!footer) return;
+
+    const currentFile = location.pathname.split('/').pop() || 'index.html';
+    let sequenceIndex = PAGE_FLOW_SEQUENCE.indexOf(currentFile);
+    if (sequenceIndex === -1) return;
+
+    let isFetching = false;
+
+    const trigger = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting || isFetching) return;
+        loadNextPage();
+    }, { rootMargin: '1200px 0px 1200px 0px' });
+
+    trigger.observe(footer);
+
+    async function loadNextPage() {
+        const nextFile = PAGE_FLOW_SEQUENCE[sequenceIndex + 1];
+        if (!nextFile) {
+            trigger.disconnect();
+            return;
+        }
+
+        isFetching = true;
+
+        try {
+            const response = await fetch(nextFile);
+            if (!response.ok) throw new Error('Unable to load ' + nextFile);
+
+            const html = await response.text();
+            const nextDoc = new DOMParser().parseFromString(html, 'text/html');
+            const nodes = extractPageFlowContent(nextDoc);
+            if (!nodes.length) {
+                trigger.disconnect();
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+            nodes.forEach(node => fragment.appendChild(document.importNode(node, true)));
+
+            const firstSection = fragment.querySelector('section');
+            if (firstSection) firstSection.classList.add('is-continued-section');
+
+            initSmoothAnchors(fragment);
+            initContactForm(fragment);
+            initCertificateModal(fragment);
+            initSkillsSummary(fragment);
+            initCopyButtons(fragment);
+            initDynamicStats(fragment);
+
+            const pageTitle = nextDoc.title;
+            const entryMarker = fragment.firstElementChild;
+
+            footer.parentNode.insertBefore(fragment, footer);
+            sequenceIndex += 1;
+
+            if (entryMarker) {
+                const pageEntry = new IntersectionObserver(function (entries) {
+                    if (!entries[0].isIntersecting) return;
+                    history.pushState({ page: nextFile }, '', nextFile);
+                    document.title = pageTitle;
+                    setActiveNavLink();
+                    pageEntry.disconnect();
+                }, { threshold: 0 });
+                pageEntry.observe(entryMarker);
+            }
+        } catch (error) {
+            trigger.disconnect();
+        } finally {
+            isFetching = false;
+        }
+    }
+}
+
+function extractPageFlowContent(doc) {
+    const skipTags = ['NAV', 'FOOTER', 'SCRIPT'];
+    const skipIds = ['loadingScreen', 'binaryWave'];
+
+    return Array.from(doc.body.children).filter(function (node) {
+        if (skipTags.indexOf(node.tagName) !== -1) return false;
+        if (skipIds.indexOf(node.id) !== -1) return false;
+        return true;
     });
 }
 

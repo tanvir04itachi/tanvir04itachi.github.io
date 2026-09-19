@@ -363,17 +363,50 @@ input, textarea {
     margin: 0 auto;
     padding: 0 var(--gutter);
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 1fr 340px;
     gap: var(--sp-4xl);
     align-items: start;
 }
 
+.hero-text {
+    order: 1;
+}
+
+.hero-image {
+    order: 2;
+    align-self: center;
+    margin-top: var(--sp-1xl);
+    width: 540px;
+    height: 540px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid var(--rule);
+    animation: hero-image-reveal 900ms var(--transition-base) both;
+    transition: transform 320ms ease, border-color 320ms ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.035);
+    border-color: var(--verified);
+}
+
 .hero-image img {
     width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border: 1.5px solid var(--rule);
+    height: 100%;
+    object-fit: contain;
     filter: grayscale(15%) contrast(1.03);
+}
+
+@keyframes hero-image-reveal {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .hero-image-caption {
@@ -407,6 +440,39 @@ input, textarea {
     font-size: clamp(1.15rem, 2vw, 1.4rem);
     color: var(--ink-muted);
     margin-top: var(--sp-sm);
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-lg);
+    margin-top: var(--sp-lg);
+    list-style: none;
+}
+
+.hero-meta li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: var(--sp-lg);
+    border-left: 1px solid var(--rule);
+}
+
+.hero-meta li:first-child {
+    padding-left: 0;
+    border-left: none;
+}
+
+.hero-meta-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.hero-meta-value {
+    font-size: 0.85rem;
+    color: var(--ink);
 }
 
 .hero-description {
@@ -486,6 +552,14 @@ input, textarea {
     font-weight: 500;
 }
 
+.stat-number-suffix {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--ink-faint);
+    margin-left: 2px;
+}
+
 .stat-label {
     font-size: 0.78rem;
     color: var(--ink-muted);
@@ -497,8 +571,22 @@ input, textarea {
    ============================================ */
 
 .footer {
+    /* every section above already closes with sp-4xl of its own
+       bottom padding, so the footer only needs a modest nudge, not
+       a second helping of the same clearance */
     border-top: 1px solid var(--rule);
-    margin-top: var(--sp-4xl);
+    margin-top: var(--sp-xl);
+}
+
+/* the home page's stats bar already closes with its own rule, so the
+   usual pre-footer clearance just doubles up as dead space, and the
+   two rules back to back would read as a stray double line */
+.quick-stats:has(+ .footer) {
+    border-bottom: none;
+}
+
+.quick-stats + .footer {
+    margin-top: var(--sp-lg);
 }
 
 .footer-content {
@@ -567,6 +655,12 @@ section + section {
 /* body pages start below fixed nav */
 .about-section, .projects-section, .experience-section, .contact-section {
     margin-top: 88px;
+}
+
+/* seamless page flow: a page spliced in mid-scroll isn't under the fixed
+   nav, so it doesn't need the clearance the same section gets on load */
+.is-continued-section {
+    margin-top: 0 !important;
 }
 
 /* ============================================
@@ -1090,7 +1184,15 @@ section + section {
     }
 
     .hero-image {
-        max-width: 220px;
+        order: 0;
+        align-self: center;
+        width: 240px;
+        height: 240px;
+        margin: 0 auto;
+    }
+
+    .hero-text {
+        order: 0;
     }
 
     .contact-container {
@@ -1154,6 +1256,22 @@ section + section {
     }
 
     .stat-card:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        gap: var(--sp-md);
+    }
+
+    .hero-meta li {
+        border-left: none;
+        border-top: 1px solid var(--rule);
+        padding: var(--sp-sm) 0 0;
+    }
+
+    .hero-meta li:first-child {
         border-top: none;
         padding-top: 0;
     }
