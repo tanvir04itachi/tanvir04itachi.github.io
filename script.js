@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
     initContactForm();
     initCertificateModal();
     initDynamicStats();
+    initBinaryWave();
+    initScrollProgress();
+    initSkillsSummary();
+    initCopyButtons();
     hideLoadingScreen();
 });
 
@@ -300,6 +304,180 @@ document.addEventListener('keydown', function (event) {
         closeAlert();
     }
 });
+
+/* ============================================
+   BINARY WAVE BACKGROUND
+   A ripple of 0s and 1s that follows the cursor —
+   silent otherwise, so it reads as a response to
+   the visitor rather than ambient decoration.
+   ============================================ */
+
+function initBinaryWave() {
+    const canvas = document.getElementById('binaryWave');
+    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ctx = canvas.getContext('2d');
+    const CELL = 24;
+    const RADIUS = 240;
+
+    let width, height, dpr, cells;
+    let mouseX = -9999;
+    let mouseY = -9999;
+    let inkColor = [124, 135, 144];
+
+    function readInkColor() {
+        const hex = getComputedStyle(document.documentElement).getPropertyValue('--ink-faint').trim();
+        const parts = hex.replace('#', '').match(/.{1,2}/g);
+        if (parts && parts.length === 3) {
+            inkColor = parts.map(part => parseInt(part, 16));
+        }
+    }
+
+    function buildGrid() {
+        const cols = Math.ceil(width / CELL) + 1;
+        const rows = Math.ceil(height / CELL) + 1;
+        cells = [];
+
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                cells.push({
+                    x: c * CELL,
+                    y: r * CELL,
+                    char: Math.random() > 0.5 ? '1' : '0'
+                });
+            }
+        }
+    }
+
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.font = "14px 'IBM Plex Mono', monospace";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        buildGrid();
+    }
+
+    readInkColor();
+    resize();
+
+    window.addEventListener('resize', throttle(resize, 200));
+    window.addEventListener('pointermove', function (event) {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    });
+    window.addEventListener('pointerleave', function () {
+        mouseX = -9999;
+        mouseY = -9999;
+    });
+
+    new MutationObserver(readInkColor).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+    });
+
+    function frame(time) {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < cells.length; i += 1) {
+            const cell = cells[i];
+            const dx = cell.x - mouseX;
+            const dy = cell.y - mouseY;
+            const dist = Math.sqrt((dx * dx) + (dy * dy));
+
+            if (dist > RADIUS) continue;
+
+            const wave = (Math.sin((dist * 0.05) - (time * 0.004)) * 0.5) + 0.5;
+            const falloff = 1 - (dist / RADIUS);
+            const opacity = wave * falloff * 0.55;
+
+            if (opacity < 0.02) continue;
+
+            if (falloff > 0.45 && Math.random() < 0.01) {
+                cell.char = cell.char === '1' ? '0' : '1';
+            }
+
+            ctx.fillStyle = `rgba(${inkColor[0]}, ${inkColor[1]}, ${inkColor[2]}, ${opacity.toFixed(3)})`;
+            ctx.fillText(cell.char, cell.x, cell.y);
+        }
+
+        requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+}
+
+/* ============================================
+   SCROLL PROGRESS
+   ============================================ */
+
+function initScrollProgress() {
+    const bar = document.getElementById('scrollProgressBar');
+    if (!bar) return;
+
+    function update() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        bar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+    }
+
+    window.addEventListener('scroll', throttle(update, 50));
+    window.addEventListener('resize', throttle(update, 200));
+    update();
+}
+
+/* ============================================
+   SKILLS SUMMARY
+   Counts the categories and badges already on
+   the page rather than hardcoding totals that
+   drift as skills are added.
+   ============================================ */
+
+function initSkillsSummary() {
+    const summary = document.getElementById('skillsSummary');
+    if (!summary) return;
+
+    const categories = document.querySelectorAll('.skill-category').length;
+    const technologies = document.querySelectorAll('.skill-badge').length;
+
+    if (categories && technologies) {
+        summary.textContent = categories + ' categories, ' + technologies + ' technologies tracked below.';
+    }
+}
+
+/* ============================================
+   COPY BUTTONS
+   ============================================ */
+
+function initCopyButtons() {
+    document.querySelectorAll('[data-copy]').forEach(button => {
+        button.addEventListener('click', async function () {
+            const text = button.getAttribute('data-copy');
+            const originalText = button.textContent;
+
+            try {
+                await navigator.clipboard.writeText(text);
+                button.textContent = 'Copied';
+                button.disabled = true;
+
+                setTimeout(function () {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 1500);
+            } catch (error) {
+                // Clipboard API unavailable — the mailto/tel link still works.
+            }
+        });
+    });
+}
 
 /* ============================================
    DYNAMIC STATS

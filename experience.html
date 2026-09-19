@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas class="binary-wave" id="binaryWave" aria-hidden="true"></canvas>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="launch-loader" aria-label="Loading portfolio">
@@ -32,6 +34,7 @@
 
     <!-- Navigation -->
     <nav class="navbar">
+        <div class="scroll-progress"><span id="scrollProgressBar"></span></div>
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
                 <span class="nav-brand-mark">TA</span>

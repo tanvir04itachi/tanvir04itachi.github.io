@@ -120,6 +120,19 @@ input, textarea {
 }
 
 /* ============================================
+   BINARY WAVE BACKGROUND
+   ============================================ */
+
+.binary-wave {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================================
    LOADING SCREEN
    ============================================ */
 
@@ -230,6 +243,21 @@ input, textarea {
 .navbar.is-scrolled {
     border-bottom-color: var(--rule);
     background: var(--bg-raised);
+}
+
+.scroll-progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+}
+
+.scroll-progress span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--verified);
 }
 
 .nav-container {
@@ -660,6 +688,7 @@ section + section {
 .status--course { color: var(--ink-faint); }
 
 .project-tags {
+    flex-basis: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: var(--sp-sm);
@@ -1018,6 +1047,38 @@ section + section {
     color: var(--on-verified);
 }
 
+.cv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-sm);
+}
+
+.info-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-md);
+    flex-wrap: wrap;
+}
+
+.copy-btn {
+    font-size: 0.72rem;
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    color: var(--ink-muted);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.copy-btn:hover {
+    border-color: var(--verified);
+    color: var(--verified);
+}
+
+.copy-btn:disabled {
+    border-color: var(--verified);
+    color: var(--verified);
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -1119,5 +1180,9 @@ section + section {
     .launch-checks li {
         opacity: 1;
         color: var(--verified);
+    }
+
+    .binary-wave {
+        display: none;
     }
 }

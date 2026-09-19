@@ -19,6 +19,8 @@
 </head>
 
 <body>
+    <canvas class="binary-wave" id="binaryWave" aria-hidden="true"></canvas>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="launch-loader" aria-label="Loading portfolio">
@@ -34,6 +36,7 @@
 
     <!-- Navigation -->
     <nav class="navbar">
+        <div class="scroll-progress"><span id="scrollProgressBar"></span></div>
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
                 <span class="nav-brand-mark">TA</span>
@@ -69,6 +72,7 @@
                     <div class="project-header">
                         <h3 class="project-title">MedBridge: A Telemedicine Platform</h3>
                         <span class="status status--done">Completed</span> <!--status status--progress-->
+                        <span class="status status--course">Coursework</span>
                         <div class="project-tags">
                             <span class="tag">NestJS</span>
                             <span class="tag">NextJS</span>
@@ -96,6 +100,7 @@
                     <div class="project-header">
                         <h3 class="project-title">Smart Residential Society Management System</h3>
                         <span class="status status--done">Completed</span>
+                        <span class="status status--course">Self Improvement</span>
                         <div class="project-tags">
                             <span class="tag">NestJS</span>
                             <span class="tag">Next.js</span>

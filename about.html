@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas class="binary-wave" id="binaryWave" aria-hidden="true"></canvas>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="launch-loader" aria-label="Loading portfolio">
@@ -32,6 +34,7 @@
 
     <!-- Navigation -->
     <nav class="navbar">
+        <div class="scroll-progress"><span id="scrollProgressBar"></span></div>
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
                 <span class="nav-brand-mark">TA</span>
@@ -94,6 +97,7 @@
     <section class="skills-section">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle" id="skillsSummary"></p>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3 class="category-title">Backend Languages</h3>

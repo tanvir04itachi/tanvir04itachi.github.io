@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas class="binary-wave" id="binaryWave" aria-hidden="true"></canvas>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="launch-loader" aria-label="Loading portfolio">
@@ -32,6 +34,7 @@
 
     <!-- Navigation -->
     <nav class="navbar">
+        <div class="scroll-progress"><span id="scrollProgressBar"></span></div>
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
                 <span class="nav-brand-mark">TA</span>
@@ -98,7 +101,10 @@
                         
                         <div class="info-item">
                             <h3>Email</h3>
-                            <a href="mailto:tanvir.cse2004@gmail.com">tanvir.cse2004@gmail.com</a>
+                            <div class="info-item-row">
+                                <a href="mailto:tanvir.cse2004@gmail.com">tanvir.cse2004@gmail.com</a>
+                                <button type="button" class="copy-btn" data-copy="tanvir.cse2004@gmail.com">Copy</button>
+                            </div>
                         </div>
 
                         <div class="info-item">
@@ -123,7 +129,10 @@
 
                         <div class="info-item">
                             <h3>CV</h3>
-                            <a href="Resources/Tanvir Ahmed.pdf" class="resume-btn" target="_blank">View CV</a>
+                            <div class="cv-actions">
+                                <a href="Resources/Tanvir Ahmed.pdf" class="resume-btn" target="_blank">View CV</a>
+                                <a href="Resources/Tanvir Ahmed.pdf" class="resume-btn" download="Tanvir-Ahmed-CV.pdf">Download CV</a>
+                            </div>
                         </div>
                     </div>
                 </div>
